@@ -88,6 +88,55 @@ Final statistics:
 - GC content: 51%
 - Duplication: 19%
 
+## Results and Interpretation
+
+### Raw Read QC
+
+Initial FastQC analysis of SRR031708 showed substantial quality deterioration toward the 3′ end of the 45 bp reads.
+
+Key observations:
+
+- 5,836,296 raw reads were analyzed.
+- Approximately 60.5% of bases had a quality score of Q20 or higher.
+- Per-base sequence quality decreased substantially after approximately 30 bp.
+- N content increased slightly toward the 3′ end.
+- Read length was uniform at 45 bp.
+- No overrepresented sequences were detected.
+
+These results indicated that quality preprocessing was required before downstream analysis.
+
+### Effect of Quality Filtering
+
+Initial fastp filtering retained:
+
+- Input reads: 5,836,296
+- Reads retained: 5,416,357
+- Reads removed due to low quality: 375,693
+- Reads removed due to excessive N bases: 44,246
+
+Approximately 92.8% of the original reads were retained.
+
+### Effect of 3′-End Trimming
+
+Gentle 3′-end trimming was then performed using a sliding window approach.
+
+After trimming:
+
+- Reads retained: 4,502,590
+- Reads retained relative to filtered input: ~83.1%
+- Q20 base proportion increased from 61.6% to 87.0%.
+- N content was effectively eliminated.
+
+The final FastQC analysis showed substantially improved sequence quality across most of the read length. Quality still decreased at the final few bases, but the overall dataset was considerably improved without excessive loss of reads.
+
+### Overall Interpretation
+
+The main quality issue in the raw dataset was poor 3′-end sequence quality. Quality filtering removed low-quality reads and reads containing excessive ambiguous bases, while subsequent 3′-end trimming improved the quality of the remaining bases.
+
+The preprocessing reduced the dataset from approximately 5.84 million raw reads to 4.50 million final reads while substantially improving the proportion of Q20 bases.
+
+The final dataset provides a suitable starting point for downstream RNA-seq analysis.
+
 ## Conclusion
 
 The RNA-seq dataset initially showed substantial 3′-end quality degradation.
