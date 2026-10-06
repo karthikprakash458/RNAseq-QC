@@ -1,0 +1,14 @@
+# Sequencing data
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+
+# QC archives
+*.zip
+
+# Python cache
+__pycache__/
+
+# MultiQC internal data
+results/multiqc/multiqc_data/
